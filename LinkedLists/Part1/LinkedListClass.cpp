@@ -163,6 +163,7 @@ int main() {
     ll.insertAtBeginning(70);
     ll.insertAtBeginning(90);
     ll.insertAtEnd(80);
+    ll.display();
     ll.getIdx(3);
     cout << ll.size << endl;
     ll.display();
