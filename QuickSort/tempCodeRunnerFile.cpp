@@ -1,0 +1,1 @@
+if(i==(startIdx+endIdx)/2) continue;
