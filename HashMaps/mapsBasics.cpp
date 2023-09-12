@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     unordered_map <string, int> map;  // -> key value pairs
-
+    
     // Pairs can be inserted into a unordered map
     // data can be put by using pair.first, and pair.second
 
@@ -26,7 +26,7 @@ int main() {
 
     map["Raina"] = 44;
 
-    // Printing elements: -> auto us used to automatically detect the data type
+    // Printing elements: -> auto is used to automatically detect the data type
     for(auto p: map) {
         cout << p.first << " " << p.second << endl;
     }
@@ -45,5 +45,11 @@ int main() {
 
     // in find() operation we find key and syntax is same
     
+    unordered_map <int, int> x;
+    x[1] = 2;
+    cout << (x.find(1) != x.end()) << endl;
+    for(auto ele : x) {
+        cout << ele.second << endl;
+    }
 
 }
