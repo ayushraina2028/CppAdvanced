@@ -38,7 +38,7 @@ vector <int> findNextSmallerElement(vector <int> arr) {
 }
 
 int main() {
-    vector <int> arr = {2,1,5,6,2,3};
+    vector <int> arr = {10,3,5,1,2,15,8,6,12};
     vector <int> ans = findNextSmallerElement(arr);
     for(int i = 0;i < ans.size();i++) {
         cout << ans[i] << " ";
