@@ -15,9 +15,9 @@
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
-      "externalConsole": false,
-      "cwd": "/home/ayushraina/Desktop/C++/CppAdvanced/PriorityQueues/Heaps",
-      "program": "/home/ayushraina/Desktop/C++/CppAdvanced/PriorityQueues/Heaps/build/Debug/outDebug",
+      "externalConsole": true,
+      "cwd": ".",
+      "program": "build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
