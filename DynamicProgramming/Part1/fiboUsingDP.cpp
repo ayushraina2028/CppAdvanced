@@ -5,6 +5,7 @@ using namespace std;
 // declaring global memory vector
 vector <int> dp;
 
+// This is a top down solution
 int fibo(int n) {
     // Base Case
     if(n == 0 || n == 1) return n;
