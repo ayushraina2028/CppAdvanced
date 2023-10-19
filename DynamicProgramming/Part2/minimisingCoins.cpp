@@ -16,21 +16,25 @@ int f(int cost, vector<int>& coins) {
 
     // Main work
     int result = INT_MAX;
-    for(int i = 0;i < coins.size(); i++) {
-        int value = f(cost-coins[i], coins);
+    for(int coin : coins) {
+        int value = f(cost-coin, coins);
 
+        // if we receive -1 then result will not be updated and will be handled below outside this loop
         if(value != -1) {
             result = min(result, value+1);
         }
     }
 
-    // if resutl was not updated
+    // if result was not updated
     if(result == INT_MAX) result = -1;
     return dp[cost] = result;
 
 }
 
 int main() {
+
+    //problem link -> https://cses.fi/problemset/task/1634
+
     int n,cost;
     cin >> n >> cost;
 
