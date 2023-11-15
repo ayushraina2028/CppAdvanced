@@ -4,6 +4,7 @@
 #define pp pair<int, int>
 #include <queue>
 #include <climits>
+#include <string>
 using namespace std;
 
 // adjacency list
@@ -44,15 +45,16 @@ vector<int> dijkstra(int source) {
 int main() {
     int vertices;
     int edges;
-
+    
     // Please enter vertices starting from 0 onwards
     cin >> vertices >> edges;
 
     graph.resize(vertices+1, list<pair<int, int>> ());
 
     while(edges--) {
+        string s;
         int source, destination, weight;
-        cin >> source >> destination >> weight;
+        cin >> s >>     source >> destination >> weight;
 
         add_edge(source, destination, weight);
     }
