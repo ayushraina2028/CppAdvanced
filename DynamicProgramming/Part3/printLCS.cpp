@@ -9,13 +9,10 @@ int main() {
     // bottom up solution for lcs
     // Problem Link -> https://atcoder.jp/contests/dp/tasks/dp_f
     dp.clear();
-    dp.resize(3005, vector<int> (3005,-1));
+    dp.resize(9, vector<int> (9,0));
 
-    string text1;
-    string text2;
-
-    cin >> text1;
-    cin >> text2;
+    string text1 = "abac";
+    string text2 = "cab";
 
     // grid calculation
     for(int i = text1.size()-1; i >= 0; i--) {
@@ -49,6 +46,11 @@ int main() {
         }
     }
     cout << endl;
-
+    for(auto row : dp) {
+        for(auto element : row) {
+            cout << element << " ";
+        }
+        cout << endl;
+    }
     return dp[0][0];
 }
