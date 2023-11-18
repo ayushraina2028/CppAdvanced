@@ -73,8 +73,8 @@ void printShortestCommonSubsequence(string A, string B) {
 }
 
 int main() {
-    string text_1 = "bbcbcaabc";
-    string text_2 = "cacaabaaaa";
+    string text_1 = "dynamic";
+    string text_2 = "programming";
 
     int n = text_1.length();
     int m = text_2.length();
