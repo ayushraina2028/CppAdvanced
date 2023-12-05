@@ -20,7 +20,7 @@ void add_edge(int source, int destination, int weight, bool undir = true) {
 
 vector<int> dijkstra(int source) {
     priority_queue<pp, vector<pp>, greater<pp>> pqueue;
-    vector<int> shortestPaths(graph.size()-1,INT_MAX);
+    vector<int> shortestPaths(graph.size(),INT_MAX);
 
     shortestPaths[source] = 0;
     pqueue.push({shortestPaths[source], source});
@@ -52,9 +52,9 @@ int main() {
     graph.resize(vertices+1, list<pair<int, int>> ());
 
     while(edges--) {
-        string s;
+    
         int source, destination, weight;
-        cin >> s >>     source >> destination >> weight;
+        cin >> source >> destination >> weight;
 
         add_edge(source, destination, weight);
     }
