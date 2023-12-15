@@ -25,7 +25,7 @@ vector<int> productExceptSelf(vector<int> nums) {
     for(int i = 0; i < n; i++) {
         answer[i] = prefixProduct[i]*suffixProduct[i];
     }
-
+    
     return answer;
 }
 

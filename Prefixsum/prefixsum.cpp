@@ -32,5 +32,5 @@ int main() {
     cout << endl;
 
 
-    // now sum of a[i] -> a[j] = prefix[j] - prefix[a-1];
+    // now sum of a[i] -> a[j] = prefix[j] - prefix[i-1];
 }
