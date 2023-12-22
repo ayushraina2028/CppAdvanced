@@ -21,7 +21,6 @@ int maxSatisfaction(vector<int>& customers, vector<int>& grumpy, int minutes) {
 
     // run the above window further
     for(int j = minutes; j < grumpy.size(); j++) {
-        
 
         if(grumpy[j] == 1) normalsum += customers[j];
         if(grumpy[j-minutes] == 1) normalsum -= customers[j-minutes];
@@ -45,4 +44,6 @@ int main() {
 
     int maximumSatisfy = maxSatisfaction(customers, grumpy, minutes);
     cout << maximumSatisfy << endl;
+
+    // another method we can use is to find the window with max loss of satisfaction and invert it.
 }
