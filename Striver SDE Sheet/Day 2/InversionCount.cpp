@@ -10,6 +10,7 @@ void merge(vector<int> nums1, vector<int> nums2, vector<int>& ans) {
     int k = 0;  
 
     int n = nums1.size(), m = nums2.size();
+
     // here at this point we need to count inversion before merging
     while(i < n and j < m) {
         if(nums1[i] < nums2[j]) {
@@ -21,6 +22,7 @@ void merge(vector<int> nums1, vector<int> nums2, vector<int>& ans) {
         }
     }
 
+    // set i and j back to zero for sorting the array.
     i=0,j=0;
 
     while(i < n and j < m) {
