@@ -35,16 +35,39 @@ ListNode* deleteDuplicates(ListNode* head) {
     else if(head->next == NULL) return head;
 
     ListNode* temp = head;
+    // if we have repeated values at start only;
     while(temp->next != NULL and temp->val == temp->next->val) {
         temp = temp->next;
         head = temp;
     }
 
+    // remaining repeated values;
     while(temp->next != NULL) {
         if(temp->next->val == temp->val) {
             temp->next = temp->next->next;
         }
         else temp = temp->next;
+    }
+
+    return head;
+}
+
+ListNode* deleteDuplicatesII(ListNode* head) {
+    if(head==NULL) return NULL;
+    else if(head->next == NULL) return head;
+
+    ListNode* temp = head;
+    ListNode* curr_temp = head->next;
+
+    while(curr_temp) {
+        while(curr_temp and temp->val == curr_temp->val) {
+            curr_temp = curr_temp->next;
+        }
+
+        temp->next = curr_temp;
+        temp = curr_temp;
+
+        if(curr_temp) curr_temp->next;
     }
 
     return head;
@@ -65,7 +88,7 @@ int main() {
     cout << endl;
 
     cout << "Linked List after removing duplicates -> ";
-    ListNode* ans = deleteDuplicates(head);
+    ListNode* ans = deleteDuplicatesII(head);
     while(ans != NULL) {
         cout << ans->val << " ";
         ans = ans->next;

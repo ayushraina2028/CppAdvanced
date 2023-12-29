@@ -85,6 +85,7 @@ ListNode* mergeTwoListsII(ListNode* headA, ListNode* headB) {
     if(tempA == NULL) return tempB;
     else if(tempB == NULL) return tempA;
 
+    // fix first node, or you can create a dummy node and at last return dummy->next;
     ListNode* answer;
     if(tempA->val <= tempB->val) {
         answer = tempA;

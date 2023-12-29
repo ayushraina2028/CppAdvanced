@@ -30,58 +30,52 @@ public:
 };
 
 vector<vector<int>> spiralMatrix(int m, int n, ListNode* head) {
-    vector <vector <int> > matrix(m, vector<int>(n,-1));
-    vector <int> parts;
+    vector<vector<int>> answer(m, vector<int> (n,-1));
 
     int min_row = 0;
-    int min_column = 0;
-    int max_row = m - 1;
-    int max_column = n - 1;
+    int min_col = 0;
+    int max_row = m-1;
+    int max_col = n-1;
+
     ListNode* temp = head;
 
-    while(min_row <= max_row && min_column <= max_column) {
+    while( min_row <= max_row and min_col <= max_col ) {
 
-        for(int i = min_column; i <= max_column;i++) {
-            if(temp == NULL) return matrix;
-            (matrix[min_row][i] = temp->val);
+        for(int i = min_col; i <= max_col; i++) {
+            if(!temp) return answer;
+            else answer[min_row][i] = temp->val;
             temp = temp->next;
         }
         min_row++;
+        if(min_row > max_row or min_col > max_col) break;
 
-        if(min_row > max_row || min_column > max_column) {
-            break;
-        }
 
-        for(int i = min_row;i <= max_row;i++) {
-            if(temp == NULL) return matrix;
-            (matrix[i][max_column] = temp->val);
+        for(int i = min_row; i <= max_row; i++) {
+            if(!temp) return answer;
+            else answer[i][max_col] = temp->val;
             temp = temp->next;
         }
-        max_column--;
+        max_col--;
+        if(min_row > max_row or min_col > max_col) break;
 
-        if(min_row > max_row || min_column > max_column) {
-            break;
-        }
-
-        for(int i = max_column;i >= min_column;i--) {
-            if(temp == NULL) return matrix;
-            (matrix[max_row][i] = temp->val);
+        for(int i = max_col; i >= min_col; i--) {
+            if(!temp) return answer;
+            else answer[max_row][i] = temp->val;
             temp = temp->next;
         }
         max_row--;
+        if(min_row > max_row or min_col > max_col) break;
 
-        if(min_row > max_row || min_column > max_column) {
-            break;
-        }
-
-        for(int i = max_row;i >= min_row;i--) {
-            if(temp == NULL) return matrix;
-            (matrix[i][min_column] = temp->val);
+        for(int i = max_row; i >= min_row; i--) {
+            if(!temp) return answer;
+            else answer[i][min_col] = temp->val;
             temp = temp->next;
         }
-        min_column++;
+        min_col++;
+
     }
-    return matrix;
+
+    return answer;
 }
 
 int main() {

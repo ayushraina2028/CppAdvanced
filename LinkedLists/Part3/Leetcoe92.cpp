@@ -89,6 +89,44 @@ ListNode* reverseBetween(ListNode* head, int left, int right) {
     return head;
 }
 
+ListNode* reverseBetweenII(ListNode* head, int left, int right) {
+    if(head == NULL or head->next == NULL or left == right) return head;
+
+    ListNode* a = NULL;
+    ListNode* b = NULL;
+    ListNode* c = NULL;
+    ListNode* d = NULL;
+    ListNode* e = NULL;
+
+    ListNode* temp = head;
+    int count = 1;
+
+    while(temp) {
+
+        if(count == left-1) a = temp;
+        else if(count == left) b = temp;
+        else if(count == right) c = temp;
+        else if(count == right+1) d = temp;
+
+        count++;
+        temp = temp -> next;
+    }
+
+    // breaking lists
+    if(a != NULL) a->next = NULL;
+    c->next = NULL;
+
+    if(a != NULL) {
+        ListNode* reversedHead = reverseListRecursive(b);
+        b->next = d;
+        a->next = reversedHead;
+        return head;
+    }
+    c = reverseListRecursive(b);
+    b->next = d;
+    return c;
+}
+
 int main() {
     vector<int> nums = {1,2,3,4,5};
     LinkedList ll(nums);
@@ -105,9 +143,9 @@ int main() {
 
     temp = head;
     cout << "Reversed Linked List -> ";
-    int m = 2;
+    int m = 1;
     int n = 5;
-    ListNode* reverse = reverseBetween(temp,m,n);
+    ListNode* reverse = reverseBetweenII(temp,m,n);
     while(reverse != NULL) {
         cout << reverse->val << " ";
         reverse = reverse->next;
