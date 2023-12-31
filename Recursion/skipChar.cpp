@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void removeChar(string str, string ans,int i,char ch) {
+void removeChar(string& str, string ans,int i,char ch) {
     if(i == str.length()) {
         cout << ans << endl;
         return;

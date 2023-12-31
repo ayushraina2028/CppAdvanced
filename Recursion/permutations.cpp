@@ -21,7 +21,7 @@ void generatePermutations(string str, string help, vector<string>& permutations,
 }   
 
 int main() {
-    string str = "abcd";
+    string str = "abc";
     vector<string> subsets;
 
     generatePermutations(str,"",subsets,0);

@@ -17,8 +17,8 @@ void increasingSubSequence(int n, int k, vector<vector<int>>& Subsequences, int 
 }
 
 int main() {
-    int n = 7;
-    int size = 3;
+    int n = 4;
+    int size = 2;
 
     vector<vector<int>> Sequences;
     vector<int> v;
