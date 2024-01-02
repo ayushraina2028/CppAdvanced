@@ -19,7 +19,7 @@ void printSubsets(string str,string subset,int i, vector<string>& subsets) {
 }
 
 int main() {
-    string str = "abacca";
+    string str = "122";
     vector<string> subsets;
     sort(str.begin(), str.end());
 
