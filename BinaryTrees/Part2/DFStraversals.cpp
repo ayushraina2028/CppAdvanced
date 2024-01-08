@@ -60,17 +60,20 @@ int main() {
 
     // Display 
     // Preorder => [Root->Left->Right]
+    cout << "Pre Order Traversal -> ";
     preOrderTraversal(a);
     cout << endl;
 
     // Inorder Traversal => [Left->Root->Right]
+    cout << "In Order Traversal -> ";
     inOrderTraversal(a);
     cout << endl;
 
     // Postorder Traversal => [Left->Right->Root]
+    cout << "Post Order Traversal -> ";
     postOrderTraversal(a);
     cout << endl;
-
+    
     // Time Complexity is O(n) and Space Complexity is O(height) ~ O(levels)
     // Call stack during recursion gets maximum size filled equal to levels in a tree.
     

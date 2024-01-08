@@ -31,7 +31,7 @@ int sumTreeNode(Node* root) {
 
 int sizeTreeNode(Node* root) {
     if(root == NULL) return 0;
-    int size = 1 + sizeTreeNode(root->left) + sizeTreeNode(root->right); // Think, it is correct
+    int size = 1 + sizeTreeNode(root->left) + sizeTreeNode(root->right); // Think, it is correct(Number of nodes)
     return size;
 }
 
@@ -72,17 +72,17 @@ int main() {
 
     // Sum
     int sum = sumTreeNode(a);
-    cout << sum << endl;
+    cout << "Sum of all nodes -> " << sum << endl;
 
     // Size
     int size = sizeTreeNode(a);
-    cout << size << endl;
+    cout << "Size of tree -> " << size << endl;
     
     // max value
     int maxVal = maxValueInTreeNode(a);
-    cout << maxVal << endl;
+    cout << "Maximum value in tree -> " << maxVal << endl;
 
     // Levels in Binary Tree
     int level = findLevelInBinaryTree(a);
-    cout << level << endl;
+    cout << "Level of binary tree -> " <<  level << endl;
 }

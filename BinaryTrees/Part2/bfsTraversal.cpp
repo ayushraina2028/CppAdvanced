@@ -50,6 +50,8 @@ int main() {
     c->left = f;
     c->right = g;
 
+    cout << "level order traversal -> "; 
     levelOrderUsingQueue(a); // Best Method;
+    cout << endl;
 }
 
