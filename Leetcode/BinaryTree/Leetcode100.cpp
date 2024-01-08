@@ -60,13 +60,6 @@ int findLevels(TreeNode* root) {
     else return 1 + max(findLevels(root->left), findLevels(root->right));
 }
 
-void preOrderTraversal(TreeNode* root) {
-    if(root == NULL) return;
-    cout << root->val << " ";
-    preOrderTraversal(root->left);
-    preOrderTraversal(root->right);
-}
-
 void levelOrderUsingQueue(TreeNode* root) {
     queue < pair< TreeNode*, int > > qu;
     qu.push({root,0});  
@@ -82,20 +75,19 @@ void levelOrderUsingQueue(TreeNode* root) {
         
         if(temp.first->val == null) {
             cout << "null ";
-            count++;
             continue;
         }
         else cout << temp.first->val << " ";
 
-        if(count == pow(2,power)-1 and power != 1) {
+        if(count == pow(2,power)-1 and power != 0) {
             cout << endl;
             power++;
             count++;
         }
-        else if(power == 1) {
+        else if(power == 0) {
             cout << endl;
-            power++;
             count++;
+            power++;
         }
         else count++;
 
@@ -115,20 +107,36 @@ void levelOrderUsingQueue(TreeNode* root) {
 
 // Do not modify anything above this, Above code is used to convert array to binary tree and get root, so that we can
 // solve leetcode question in VS Code itself.
+// Just Copy paste below function on leetcode and it will get accepted.
 
+bool isSameTree(TreeNode* root1, TreeNode* root2) {
 
+    if(root1 == NULL and root2 == NULL) return true;
+    else if((root1 == NULL and root2 != NULL) or (root1 != NULL and root2 == NULL) or (root1->val != root2->val)) return false;
+
+    if(!isSameTree(root1->left, root2->left) or !isSameTree(root1->right, root2->right)) return false;
+
+    return true;
+}
 
 int main() {
-    vector<int> nums = {1,2,2,null,3,null,3,null,null,null,4,null,null,5,6};
-    BinaryTree BT(nums);
-    TreeNode* root = BT.getRoot();
+    vector<int> nums1 = {1,2};
+    BinaryTree BT1(nums1);
+    TreeNode* root1 = BT1.getRoot();
 
-    cout << "Entered Binary Tree -> " << endl;
-    levelOrderUsingQueue(root);
+    cout << "Entered Binary Tree 1-> " << endl;
+    levelOrderUsingQueue(root1);
+
+    vector<int> nums2 = {1,null,2};
+    BinaryTree BT2(nums2);
+    TreeNode* root2 = BT2.getRoot();
+
+    cout << "Entered Binary Tree 2-> " << endl;
+    levelOrderUsingQueue(root2);
 
     // dont change anything above this main
-    cout << "preOrder traversal -> ";
-    preOrderTraversal(root);
-    cout << endl;
+    bool ans = isSameTree(root1,root2);
+    if(ans) cout << "Both trees are same " << endl;
+    else cout << "Trees are not same " << endl;
 }
 

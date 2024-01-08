@@ -116,10 +116,24 @@ void levelOrderUsingQueue(TreeNode* root) {
 // Do not modify anything above this, Above code is used to convert array to binary tree and get root, so that we can
 // solve leetcode question in VS Code itself.
 
+TreeNode* invertTree(TreeNode* root) {
+    
+    if(root == NULL) return NULL; // base case
 
+    // -> recursive calls;
+    invertTree(root->left);
+    invertTree(root->right);
+
+    // swap;
+    TreeNode* temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+
+    return root;
+}
 
 int main() {
-    vector<int> nums = {1,2,2,null,3,null,3,null,null,null,4,null,null,5,6};
+    vector<int> nums = {4,2,7,1,3,6,9};
     BinaryTree BT(nums);
     TreeNode* root = BT.getRoot();
 
@@ -127,8 +141,9 @@ int main() {
     levelOrderUsingQueue(root);
 
     // dont change anything above this main
-    cout << "preOrder traversal -> ";
-    preOrderTraversal(root);
-    cout << endl;
+    
+    cout << "Inverted Binary Tree -> " << endl;
+    TreeNode* invertedRoot = invertTree(root);
+    levelOrderUsingQueue(invertedRoot);
 }
 

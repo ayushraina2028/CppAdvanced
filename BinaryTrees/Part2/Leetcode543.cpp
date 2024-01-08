@@ -60,13 +60,6 @@ int findLevels(TreeNode* root) {
     else return 1 + max(findLevels(root->left), findLevels(root->right));
 }
 
-void preOrderTraversal(TreeNode* root) {
-    if(root == NULL) return;
-    cout << root->val << " ";
-    preOrderTraversal(root->left);
-    preOrderTraversal(root->right);
-}
-
 void levelOrderUsingQueue(TreeNode* root) {
     queue < pair< TreeNode*, int > > qu;
     qu.push({root,0});  
@@ -82,20 +75,19 @@ void levelOrderUsingQueue(TreeNode* root) {
         
         if(temp.first->val == null) {
             cout << "null ";
-            count++;
             continue;
         }
         else cout << temp.first->val << " ";
 
-        if(count == pow(2,power)-1 and power != 1) {
+        if(count == pow(2,power)-1 and power != 0) {
             cout << endl;
             power++;
             count++;
         }
-        else if(power == 1) {
+        else if(power == 0) {
             cout << endl;
-            power++;
             count++;
+            power++;
         }
         else count++;
 
@@ -115,11 +107,29 @@ void levelOrderUsingQueue(TreeNode* root) {
 
 // Do not modify anything above this, Above code is used to convert array to binary tree and get root, so that we can
 // solve leetcode question in VS Code itself.
+// Just Copy paste below function on leetcode and it will get accepted.
 
+int traverseAllNodes(TreeNode* root, int& maxDiameter) {
+    if(root == NULL) return 0;
 
+    int leftLevel = findLevels(root->left);
+    int rightLevel = findLevels(root->right);
+    maxDiameter = max(maxDiameter, leftLevel + rightLevel);
+
+    // recurse
+    traverseAllNodes(root->left,maxDiameter);
+    traverseAllNodes(root->right,maxDiameter);
+
+    return maxDiameter;
+}
+
+int diameterOfBinaryTree(TreeNode* root) {
+    int maxDiameter = 0;
+    return traverseAllNodes(root,maxDiameter);
+}
 
 int main() {
-    vector<int> nums = {1,2,2,null,3,null,3,null,null,null,4,null,null,5,6};
+    vector<int> nums = {1,2};
     BinaryTree BT(nums);
     TreeNode* root = BT.getRoot();
 
@@ -127,8 +137,9 @@ int main() {
     levelOrderUsingQueue(root);
 
     // dont change anything above this main
-    cout << "preOrder traversal -> ";
-    preOrderTraversal(root);
-    cout << endl;
+
+    
+    int diameter = diameterOfBinaryTree(root);
+    cout << "Diameter is -> " << diameter << endl;
 }
 

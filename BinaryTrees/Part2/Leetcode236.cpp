@@ -127,8 +127,6 @@ int main() {
     levelOrderUsingQueue(root);
 
     // dont change anything above this main
-    cout << "preOrder traversal -> ";
-    preOrderTraversal(root);
-    cout << endl;
+    
 }
 

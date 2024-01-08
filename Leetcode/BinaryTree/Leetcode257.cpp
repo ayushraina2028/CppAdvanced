@@ -116,10 +116,34 @@ void levelOrderUsingQueue(TreeNode* root) {
 // Do not modify anything above this, Above code is used to convert array to binary tree and get root, so that we can
 // solve leetcode question in VS Code itself.
 
+void helper(TreeNode* root, vector<string>& answer, string str) {
+    if(root->left == NULL and root->right == NULL) {
+        str += "->";
+        str += to_string(root->val);
+        answer.push_back(str);
+        return;
+    }
+    else if(((root->left == NULL and root->right != NULL) or (root->left != NULL and root->right == NULL)) and str.length() != 0) str += "->";
+    else if(root->left != NULL and root->right != NULL and str.length() != 0) str += "->";
 
+    if(root->left != NULL) helper(root->left,answer,str + to_string(root->val));
+    if(root->right != NULL) helper(root->right,answer,str + to_string(root->val));
+
+    return;
+}
+
+vector<string> binaryTreePaths(TreeNode* root) {
+    vector<string> answer;
+    if(root->left == NULL and root->right == NULL) {
+        answer.push_back(to_string(root->val));
+        return answer;
+    }
+    helper(root,answer,"");
+    return answer;
+}
 
 int main() {
-    vector<int> nums = {1,2,2,null,3,null,3,null,null,null,4,null,null,5,6};
+    vector<int> nums = {1,2};
     BinaryTree BT(nums);
     TreeNode* root = BT.getRoot();
 
@@ -127,8 +151,8 @@ int main() {
     levelOrderUsingQueue(root);
 
     // dont change anything above this main
-    cout << "preOrder traversal -> ";
-    preOrderTraversal(root);
-    cout << endl;
+    vector<string> allpaths = binaryTreePaths(root);
+    for(auto path : allpaths) cout << path << endl;
 }
 
+ 
