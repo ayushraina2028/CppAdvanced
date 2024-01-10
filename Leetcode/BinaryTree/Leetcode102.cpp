@@ -116,28 +116,18 @@ void levelOrderUsingQueue(TreeNode* root) {
 // Do not modify anything above this, Above code is used to convert array to binary tree and get root, so that we can
 // solve leetcode question in VS Code itself.
 
-bool existInTree(TreeNode* root, TreeNode* target) {
-    if(root == NULL) return false;
-    else if(root == target) return true;
-    else return (existInTree(root->left,target) or existInTree(root->right,target));
-}
+void levelOrderTraverse(TreeNode* root, vector<vector<int>>& answer, int level) {
+    if(root == NULL) return;
+    answer[level].push_back(root->val);
 
-TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-    if(root == p or root == q) return root;
+    if(root->left != NULL) levelOrderTraverse(root->left,answer,level+1);
+    if(root->right != NULL) levelOrderTraverse(root->right,answer,level+1);
 
-    else if(existInTree(root->left,p) and existInTree(root->right,q)) return root;
-
-    else if(existInTree(root->left,q) and existInTree(root->right,p)) return root;
-
-    else if(existInTree(root->left,p) and existInTree(root->left,q)) return lowestCommonAncestor(root->left,p,q);
-
-    else if(existInTree(root->right,p) and existInTree(root->right,q)) return lowestCommonAncestor(root->right,p,q);
-
-    return root;
+    return;
 }
 
 int main() {
-    vector<int> nums = {3,5,1,6,2,0,8,null,null,7,4};
+    vector<int> nums = {3,9,20,null,null,15,7};
     BinaryTree BT(nums);
     TreeNode* root = BT.getRoot();
 
@@ -145,10 +135,13 @@ int main() {
     levelOrderUsingQueue(root);
 
     // dont change anything above this main
-    TreeNode* p = root->left;
-    TreeNode* q = root->right;
+    vector<vector<int>> answer;
+    answer.resize(findLevels(root));
 
-    TreeNode* lca = lowestCommonAncestor(root,p,q);
-    cout << "Lowest Common Ancestor is -> " << lca->val << endl;
+    levelOrderTraverse(root,answer,0);
+    for(auto row : answer) {
+        for(auto x : row) cout << x << " ";
+        cout << endl;
+    }
 }
 

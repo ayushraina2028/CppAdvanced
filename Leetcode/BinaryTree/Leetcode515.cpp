@@ -116,28 +116,28 @@ void levelOrderUsingQueue(TreeNode* root) {
 // Do not modify anything above this, Above code is used to convert array to binary tree and get root, so that we can
 // solve leetcode question in VS Code itself.
 
-bool existInTree(TreeNode* root, TreeNode* target) {
-    if(root == NULL) return false;
-    else if(root == target) return true;
-    else return (existInTree(root->left,target) or existInTree(root->right,target));
+void levelOrderTraverse(TreeNode* root, vector<int>& answer,int level) {
+    if(root == NULL) return;
+
+    if(answer[level] < root->val) answer[level] = root->val;
+    if(root->left != NULL) levelOrderTraverse(root->left,answer,level+1);
+    if(root->right != NULL) levelOrderTraverse(root->right,answer,level+1);
+
+    return;
 }
 
-TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-    if(root == p or root == q) return root;
+vector<int> largestValues(TreeNode* root) {
+    vector<int> answer;
 
-    else if(existInTree(root->left,p) and existInTree(root->right,q)) return root;
+    int levels = findLevels(root);
+    answer.resize(levels,INT_MIN);
 
-    else if(existInTree(root->left,q) and existInTree(root->right,p)) return root;
-
-    else if(existInTree(root->left,p) and existInTree(root->left,q)) return lowestCommonAncestor(root->left,p,q);
-
-    else if(existInTree(root->right,p) and existInTree(root->right,q)) return lowestCommonAncestor(root->right,p,q);
-
-    return root;
+    levelOrderTraverse(root,answer,0);
+    return answer;
 }
 
 int main() {
-    vector<int> nums = {3,5,1,6,2,0,8,null,null,7,4};
+    vector<int> nums = {1,2,3};
     BinaryTree BT(nums);
     TreeNode* root = BT.getRoot();
 
@@ -145,10 +145,10 @@ int main() {
     levelOrderUsingQueue(root);
 
     // dont change anything above this main
-    TreeNode* p = root->left;
-    TreeNode* q = root->right;
+    vector<int> maxvalues = largestValues(root);
+    cout << "Maximum values in each row -> ";
+    for(auto ele : maxvalues) cout << ele << " ";
+    cout << endl;
 
-    TreeNode* lca = lowestCommonAncestor(root,p,q);
-    cout << "Lowest Common Ancestor is -> " << lca->val << endl;
 }
 
