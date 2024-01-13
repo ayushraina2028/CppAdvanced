@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <bits/stdc++.h>z
 #define null -688979
 using namespace std;
 
@@ -26,7 +26,7 @@ public:
         qu.push({root,0});
 
         while(!qu.empty()) {
-            pair topEle = qu.front();
+            auto topEle = qu.front();
             qu.pop();
             int index = topEle.second;
             
